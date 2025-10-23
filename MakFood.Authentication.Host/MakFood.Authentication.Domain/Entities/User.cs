@@ -43,6 +43,11 @@ namespace MakFood.Authentication.Domain.Model.Entities
 
         public void AddGroupsToUser(UserGroup userGroup)
         {
+            foreach(var item in _groups)
+            {
+                if (item == userGroup)
+                    throw new ValidationFailedDomainException("This User Already Has This Group");
+            }
             _groups.Add(userGroup);
         }
 

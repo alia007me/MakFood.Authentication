@@ -28,6 +28,11 @@ namespace MakFood.Authentication.Domain.Model.Entities
 
         public void AddPermissionsToGroup(GroupPermission permission)
         {
+            foreach (var item in _permissions)
+            {
+                if (item == permission)
+                    throw new ValidationFailedDomainException("This Permission Exists In This Group");
+            }
             _permissions.Add(permission);
         }
 
