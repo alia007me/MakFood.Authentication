@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MakFood.Authentication.Domain.Model.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Domain.Model.Entities
 {
-    public class UserGroup
+    public class UserGroup : BaseEntity<Guid>
     {
-        public User User { get; private set; }
-        public Guid UserId { get; private set; }
+        public UserGroup(uint groupId)
+        {
+            GroupId = groupId;
+        }
 
         public uint GroupId { get; private set; }
     }

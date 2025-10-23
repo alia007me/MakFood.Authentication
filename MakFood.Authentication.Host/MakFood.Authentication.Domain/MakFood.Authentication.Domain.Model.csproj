@@ -12,4 +12,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Substructure\MakFood.Authentication.Infraustraucture.Substructure.csproj" />
+  </ItemGroup>
+
 </Project>
