@@ -1,0 +1,147 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Host", "MakFood.Authentication.Host\MakFood.Authentication.Host.csproj", "{23FAA57B-08AE-441A-8567-EFC7D0E75C74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Application.Command", "MakFood.Authentication.Application.Command\MakFood.Authentication.Application.Command.csproj", "{4EDD30CB-F79E-4CC4-BA25-6C59A51EC841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Application.Query", "MakFood.Authentication.Application.Query\MakFood.Authentication.Application.Query.csproj", "{241C26AE-7967-48B2-ADFE-E29FF1437B21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Application.Service", "MakFood.Authentication.Application.Service\MakFood.Authentication.Application.Service.csproj", "{8B96365F-2B25-497E-A5E6-8E423B24DE9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Application.Contracts", "MakFood.Authentication.Application.Contracts\MakFood.Authentication.Application.Contracts.csproj", "{8234BD1F-D9D7-4484-A258-4F5A2AA2934D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraustraucture", "Infraustraucture", "{3F293C8D-5299-469D-9ACF-EE171EAE7AA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Infraustraucture.Substructure", "MakFood.Authentication.Infraustraucture.Substructure\MakFood.Authentication.Infraustraucture.Substructure.csproj", "{485B43C4-6D8E-451E-9031-6758F30B1046}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{2B40DE48-A1D1-4B38-9BBF-C41B221EED35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Infraustraucture.Repositories.Dapper", "MakFood.Authentication.Infraustraucture.Repositories.Dapper\MakFood.Authentication.Infraustraucture.Repositories.Dapper.csproj", "{C241CD0A-E91F-443A-8A3E-98243DC14D3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Infraustraucture.Repositories.EF", "MakFood.Authentication.Infraustraucture.Repositories.EF\MakFood.Authentication.Infraustraucture.Repositories.EF.csproj", "{93DC548B-6E40-45C5-8676-E6158654A033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Infraustraucture.Context", "MakFood.Authentication.Infraustraucture.Context\MakFood.Authentication.Infraustraucture.Context.csproj", "{562EDA12-D616-4276-B089-32D5EEE3F05A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Infraustraucture.Contract", "MakFood.Authentication.Infraustraucture.Contract\MakFood.Authentication.Infraustraucture.Contract.csproj", "{F8B462F5-88CB-4AC9-9881-8C90088C2195}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pressentation", "Pressentation", "{EB86E59C-8E2B-4233-85BC-DC4C96219372}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{6DFC902D-52F3-40D6-9B83-BA4056440268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.Domain.Model", "MakFood.Authentication.Domain\MakFood.Authentication.Domain.Model.csproj", "{8704B36A-5072-4C42-9114-E79CC3350992}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "package", "package", "{1564EC98-21DA-48DA-BD0C-E1F38FAAC1ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.FBI", "MakFood.FBI\MakFood.FBI.csproj", "{A369631C-CB6D-4399-82CA-898A718646B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.KGB", "MakFood.KGB\MakFood.KGB.csproj", "{D4E3C725-B154-47E5-8DF7-1095A2EA2C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.DI", "MakFood.Authentication.DI\MakFood.Authentication.DI.csproj", "{0D95B689-D081-41B1-A743-9F27F1D19CD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{DCFE572C-4324-4AA6-A7A2-BBCB5654699F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.IntegrationTest", "MakFood.Authentication.IntegrationTest\MakFood.Authentication.IntegrationTest.csproj", "{08C90743-F7AD-4D3B-9942-080F9C06D820}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.UnitTests", "MakFood.Authentication.UnitTests\MakFood.Authentication.UnitTests.csproj", "{27BD095D-227C-4DBB-AE73-64427BE0A6C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23FAA57B-08AE-441A-8567-EFC7D0E75C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FAA57B-08AE-441A-8567-EFC7D0E75C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FAA57B-08AE-441A-8567-EFC7D0E75C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FAA57B-08AE-441A-8567-EFC7D0E75C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EDD30CB-F79E-4CC4-BA25-6C59A51EC841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDD30CB-F79E-4CC4-BA25-6C59A51EC841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDD30CB-F79E-4CC4-BA25-6C59A51EC841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDD30CB-F79E-4CC4-BA25-6C59A51EC841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{241C26AE-7967-48B2-ADFE-E29FF1437B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{241C26AE-7967-48B2-ADFE-E29FF1437B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{241C26AE-7967-48B2-ADFE-E29FF1437B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{241C26AE-7967-48B2-ADFE-E29FF1437B21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B96365F-2B25-497E-A5E6-8E423B24DE9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B96365F-2B25-497E-A5E6-8E423B24DE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B96365F-2B25-497E-A5E6-8E423B24DE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B96365F-2B25-497E-A5E6-8E423B24DE9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8234BD1F-D9D7-4484-A258-4F5A2AA2934D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8234BD1F-D9D7-4484-A258-4F5A2AA2934D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8234BD1F-D9D7-4484-A258-4F5A2AA2934D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8234BD1F-D9D7-4484-A258-4F5A2AA2934D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{485B43C4-6D8E-451E-9031-6758F30B1046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485B43C4-6D8E-451E-9031-6758F30B1046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485B43C4-6D8E-451E-9031-6758F30B1046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485B43C4-6D8E-451E-9031-6758F30B1046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C241CD0A-E91F-443A-8A3E-98243DC14D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C241CD0A-E91F-443A-8A3E-98243DC14D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C241CD0A-E91F-443A-8A3E-98243DC14D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C241CD0A-E91F-443A-8A3E-98243DC14D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93DC548B-6E40-45C5-8676-E6158654A033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93DC548B-6E40-45C5-8676-E6158654A033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93DC548B-6E40-45C5-8676-E6158654A033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93DC548B-6E40-45C5-8676-E6158654A033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{562EDA12-D616-4276-B089-32D5EEE3F05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{562EDA12-D616-4276-B089-32D5EEE3F05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{562EDA12-D616-4276-B089-32D5EEE3F05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{562EDA12-D616-4276-B089-32D5EEE3F05A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B462F5-88CB-4AC9-9881-8C90088C2195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B462F5-88CB-4AC9-9881-8C90088C2195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B462F5-88CB-4AC9-9881-8C90088C2195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B462F5-88CB-4AC9-9881-8C90088C2195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8704B36A-5072-4C42-9114-E79CC3350992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8704B36A-5072-4C42-9114-E79CC3350992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8704B36A-5072-4C42-9114-E79CC3350992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8704B36A-5072-4C42-9114-E79CC3350992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A369631C-CB6D-4399-82CA-898A718646B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A369631C-CB6D-4399-82CA-898A718646B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A369631C-CB6D-4399-82CA-898A718646B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A369631C-CB6D-4399-82CA-898A718646B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E3C725-B154-47E5-8DF7-1095A2EA2C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E3C725-B154-47E5-8DF7-1095A2EA2C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E3C725-B154-47E5-8DF7-1095A2EA2C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E3C725-B154-47E5-8DF7-1095A2EA2C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D95B689-D081-41B1-A743-9F27F1D19CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D95B689-D081-41B1-A743-9F27F1D19CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D95B689-D081-41B1-A743-9F27F1D19CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D95B689-D081-41B1-A743-9F27F1D19CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C90743-F7AD-4D3B-9942-080F9C06D820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C90743-F7AD-4D3B-9942-080F9C06D820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C90743-F7AD-4D3B-9942-080F9C06D820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C90743-F7AD-4D3B-9942-080F9C06D820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BD095D-227C-4DBB-AE73-64427BE0A6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BD095D-227C-4DBB-AE73-64427BE0A6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BD095D-227C-4DBB-AE73-64427BE0A6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BD095D-227C-4DBB-AE73-64427BE0A6C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23FAA57B-08AE-441A-8567-EFC7D0E75C74} = {EB86E59C-8E2B-4233-85BC-DC4C96219372}
+		{4EDD30CB-F79E-4CC4-BA25-6C59A51EC841} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{241C26AE-7967-48B2-ADFE-E29FF1437B21} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8B96365F-2B25-497E-A5E6-8E423B24DE9E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8234BD1F-D9D7-4484-A258-4F5A2AA2934D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{485B43C4-6D8E-451E-9031-6758F30B1046} = {3F293C8D-5299-469D-9ACF-EE171EAE7AA2}
+		{2B40DE48-A1D1-4B38-9BBF-C41B221EED35} = {3F293C8D-5299-469D-9ACF-EE171EAE7AA2}
+		{C241CD0A-E91F-443A-8A3E-98243DC14D3A} = {2B40DE48-A1D1-4B38-9BBF-C41B221EED35}
+		{93DC548B-6E40-45C5-8676-E6158654A033} = {2B40DE48-A1D1-4B38-9BBF-C41B221EED35}
+		{562EDA12-D616-4276-B089-32D5EEE3F05A} = {2B40DE48-A1D1-4B38-9BBF-C41B221EED35}
+		{F8B462F5-88CB-4AC9-9881-8C90088C2195} = {2B40DE48-A1D1-4B38-9BBF-C41B221EED35}
+		{8704B36A-5072-4C42-9114-E79CC3350992} = {6DFC902D-52F3-40D6-9B83-BA4056440268}
+		{A369631C-CB6D-4399-82CA-898A718646B6} = {1564EC98-21DA-48DA-BD0C-E1F38FAAC1ED}
+		{D4E3C725-B154-47E5-8DF7-1095A2EA2C76} = {1564EC98-21DA-48DA-BD0C-E1F38FAAC1ED}
+		{08C90743-F7AD-4D3B-9942-080F9C06D820} = {DCFE572C-4324-4AA6-A7A2-BBCB5654699F}
+		{27BD095D-227C-4DBB-AE73-64427BE0A6C2} = {DCFE572C-4324-4AA6-A7A2-BBCB5654699F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04A6372D-858E-4982-9646-C5559778033E}
+	EndGlobalSection
+EndGlobal
