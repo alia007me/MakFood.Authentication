@@ -9,10 +9,10 @@ namespace MakFood.Authentication.Domain.Model.Entities.LoginAggregate
     public class LoginHistory
     {
         private LoginHistory() { }
-        public LoginHistory(Guid userId, DateTime dateOfLoginOrLogout)
+        public LoginHistory(Guid userId)
         {
             UserId = userId;
-            DateOfLoginOrLogout = dateOfLoginOrLogout;
+            DateOfLoginOrLogout = DateTime.Now;
         }
 
         public Guid UserId { get; private set; }
