@@ -21,7 +21,7 @@ namespace MakFood.Authentication.Domain.Model.Entities
             CheckGmail(gmail);
 
 
-
+            Id = Guid.NewGuid();
             Username = username;
             Password = password;
             Gmail = gmail;
@@ -68,7 +68,7 @@ namespace MakFood.Authentication.Domain.Model.Entities
         private void CheckGmail(string gmail)
         {
             var pattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
-            if (!string.IsNullOrWhiteSpace(gmail) || !Regex.IsMatch(gmail, pattern))
+            if (string.IsNullOrWhiteSpace(gmail) || !Regex.IsMatch(gmail, pattern))
             {
                 throw new ValidationFailedDomainException("Only Gmail Is Allowed ");
             }

@@ -9,10 +9,12 @@ namespace MakFood.Authentication.Domain.Model.Entities
 {
     public class UserGroup : BaseEntity<Guid>
     {
-        public UserGroup(uint groupId)
+        public UserGroup(uint groupId, Guid userId)
         {
             GroupId = groupId;
+            UserId = userId;
         }
+        public Guid UserId { get; private set; }
 
         public uint GroupId { get; private set; }
     }

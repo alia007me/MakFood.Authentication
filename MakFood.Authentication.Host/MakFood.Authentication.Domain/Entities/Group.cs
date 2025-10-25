@@ -11,9 +11,11 @@ namespace MakFood.Authentication.Domain.Model.Entities
     public class Group : BaseEntity<Guid>
     {
         private Group() { }
+
         public Group(string groupName, string description)
         {
             CheckGroupName(groupName);
+            Id = Guid.NewGuid();
             GroupName = groupName;
             Description = description;
         }

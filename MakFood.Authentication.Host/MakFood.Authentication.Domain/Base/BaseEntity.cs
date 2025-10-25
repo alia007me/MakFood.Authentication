@@ -8,6 +8,6 @@ namespace MakFood.Authentication.Domain.Model.Base
 {
     public class BaseEntity<Tid>
     {
-        public Tid Id { get; private set; }
+        public Tid Id { get; protected set; }
     }
 }
