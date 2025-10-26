@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Domain.Model.Base
 {
-    public class BaseEntity<Tid>
+    public class BaseEntity<TId>
     {
-        public Tid Id { get; protected set; }
+        public TId Id { get; protected set; }
     }
 }

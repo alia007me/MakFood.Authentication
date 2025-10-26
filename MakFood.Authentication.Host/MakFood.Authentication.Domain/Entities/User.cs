@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -43,12 +44,11 @@ namespace MakFood.Authentication.Domain.Model.Entities
 
         public void AddGroupsToUser(UserGroup userGroup)
         {
-            foreach(var item in _groups)
+            if (_groups.Any(c => c == userGroup))
             {
-                if (item == userGroup)
-                    throw new ValidationFailedDomainException("This User Already Has This Group");
+                throw new ValidationFailedDomainException("This User Has This Group");
             }
-            _groups.Add(userGroup);
+                _groups.Add(userGroup);
         }
 
 

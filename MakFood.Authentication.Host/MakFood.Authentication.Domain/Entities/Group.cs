@@ -30,12 +30,11 @@ namespace MakFood.Authentication.Domain.Model.Entities
 
         public void AddPermissionsToGroup(GroupPermission permission)
         {
-            foreach (var item in _permissions)
+            if (_permissions.Any(c => c == permission))
             {
-                if (item == permission)
-                    throw new ValidationFailedDomainException("This Permission Exists In This Group");
+                throw new ValidationFailedDomainException("This Group Has This Permission");
             }
-            _permissions.Add(permission);
+                _permissions.Add(permission);
         }
 
 
