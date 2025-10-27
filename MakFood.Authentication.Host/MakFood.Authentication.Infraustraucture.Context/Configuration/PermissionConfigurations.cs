@@ -22,9 +22,7 @@ namespace MakFood.Authentication.Infraustraucture.Context.Configuration
             builder.Property(x => x.Method)
                 .IsRequired();
 
-            builder.Ignore(x => x.Key);
-
-            builder.Property(x => x.ComputedKey)
+            builder.Property<string>("ComputedKey")
                 .HasComputedColumnSql("[Service]+'.'+[Method]");
 
 

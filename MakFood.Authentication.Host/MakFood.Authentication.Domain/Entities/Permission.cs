@@ -10,14 +10,12 @@ namespace MakFood.Authentication.Domain.Model.Entities
 {
     public class Permission : BaseEntity<uint>
     {
-        private static uint _lastId = 0;
 
         private Permission() { }
         public Permission(string service, string method, string description)
         {
             CheckServiceName(service);
             CheckMethod(method);
-            Id += _lastId;
             Service = service;
             Method = method;
             Description = description;
@@ -25,7 +23,6 @@ namespace MakFood.Authentication.Domain.Model.Entities
 
         public string Service { get; private set; }
         public string Method { get; private set; }
-        public string ComputedKey { get; private set; }
         public string Key => $"{Service}.{Method}";
         public string? Description { get; private set; }
 

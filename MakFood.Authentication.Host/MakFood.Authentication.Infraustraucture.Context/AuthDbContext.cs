@@ -24,12 +24,7 @@ namespace MakFood.Authentication.Infraustraucture.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserConfigurations());
-            modelBuilder.ApplyConfiguration(new GroupConfigurations());
-            modelBuilder.ApplyConfiguration(new GroupPermissionConfigurations());
-            modelBuilder.ApplyConfiguration(new PermissionConfigurations());
-            modelBuilder.ApplyConfiguration(new UserGroupConfigurations());
-
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfigurations).Assembly);
         }
 
     }

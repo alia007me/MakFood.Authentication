@@ -12,12 +12,12 @@ namespace MakFood.Authentication.DI
 {
     public static class AuthenticationRegistration
     {
-        public static IServiceCollection AuthRegistration(this IServiceCollection services)
+        public static IServiceCollection AuthRegistration(this IServiceCollection services , IConfiguration _config)
         {
 
             services.AddDbContext<AuthDbContext>(options =>
             {
-                options.UseSqlServer("Server=.;Database=MakFood.Authentication;Trusted_Connection=True;TrustServerCertificate=True");
+                options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
 
 

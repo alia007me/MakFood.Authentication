@@ -33,8 +33,8 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Service = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Method = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComputedKey = table.Column<string>(type: "nvarchar(max)", nullable: false, computedColumnSql: "[Service]+'.'+[Method]"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ComputedKey = table.Column<string>(type: "nvarchar(max)", nullable: true, computedColumnSql: "[Service]+'.'+[Method]")
                 },
                 constraints: table =>
                 {
@@ -73,11 +73,6 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                         name: "FK_GroupPermissions_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_GroupPermissions_Permissions_PermissionId",
-                        column: x => x.PermissionId,
-                        principalTable: "Permissions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -88,32 +83,19 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GroupId = table.Column<long>(type: "bigint", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserGroups", x => new { x.UserId, x.GroupId });
                     table.ForeignKey(
-                        name: "FK_UserGroups_Groups_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "Groups",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_UserGroups_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GroupPermissions_PermissionId",
-                table: "GroupPermissions",
-                column: "PermissionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserGroups_GroupId",
-                table: "UserGroups",
-                column: "GroupId");
         }
 
         /// <inheritdoc />
@@ -123,10 +105,10 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                 name: "GroupPermissions");
 
             migrationBuilder.DropTable(
-                name: "UserGroups");
+                name: "Permissions");
 
             migrationBuilder.DropTable(
-                name: "Permissions");
+                name: "UserGroups");
 
             migrationBuilder.DropTable(
                 name: "Groups");

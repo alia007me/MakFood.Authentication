@@ -15,11 +15,14 @@ namespace MakFood.Authentication.Infraustraucture.Context.Configuration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                .ValueGeneratedOnAdd();
+                   .ValueGeneratedOnAdd();
             builder.Property(x => x.GroupName)
-                .IsRequired();
+                   .IsRequired();
 
-
+            builder.HasMany(x=>x.Permissions)
+                   .WithOne()
+                   .OnDelete(DeleteBehavior.Cascade);
+                
 
         }
     }

@@ -15,9 +15,6 @@ namespace MakFood.Authentication.Infraustraucture.Context.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id)
-                .ValueGeneratedOnAdd();
-
             builder.Property(x => x.Username)
                 .IsRequired()
                 .HasMaxLength(30);
@@ -32,6 +29,10 @@ namespace MakFood.Authentication.Infraustraucture.Context.Configuration
             builder.Property(x => x.Role)
                 .HasConversion<string>()
                 .IsRequired();
+
+            builder.HasMany(x => x.Groups)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
 
 
 

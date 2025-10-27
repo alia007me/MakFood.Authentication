@@ -17,16 +17,7 @@ namespace MakFood.Authentication.Infraustraucture.Context.Configuration
 
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.HasOne<User>()
-                .WithMany(x => x.Groups)
-                .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
 
-
-            builder.HasOne<Group>()
-                .WithMany()
-                .HasForeignKey(x => x.GroupId)
-                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

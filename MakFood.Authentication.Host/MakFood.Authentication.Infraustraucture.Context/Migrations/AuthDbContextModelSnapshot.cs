@@ -59,8 +59,6 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
 
                     b.HasKey("GroupId", "PermissionId");
 
-                    b.HasIndex("PermissionId");
-
                     b.ToTable("GroupPermissions");
                 });
 
@@ -73,7 +71,6 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("ComputedKey")
-                        .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("nvarchar(max)")
                         .HasComputedColumnSql("[Service]+'.'+[Method]");
@@ -134,13 +131,13 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                     b.Property<long>("GroupId")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.HasKey("UserId", "GroupId");
-
-                    b.HasIndex("GroupId");
 
                     b.ToTable("UserGroups");
                 });
@@ -150,28 +147,16 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                     b.HasOne("MakFood.Authentication.Domain.Model.Entities.Group", null)
                         .WithMany("Permissions")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("MakFood.Authentication.Domain.Model.Entities.Permission", null)
-                        .WithMany()
-                        .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("MakFood.Authentication.Domain.Model.Entities.UserGroup", b =>
                 {
-                    b.HasOne("MakFood.Authentication.Domain.Model.Entities.Group", null)
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("MakFood.Authentication.Domain.Model.Entities.User", null)
                         .WithMany("Groups")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

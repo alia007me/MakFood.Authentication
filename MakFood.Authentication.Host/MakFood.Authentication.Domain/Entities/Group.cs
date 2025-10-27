@@ -11,12 +11,10 @@ namespace MakFood.Authentication.Domain.Model.Entities
     public class Group : BaseEntity<uint>
     {
         private Group() { }
-        private static uint _lastId = 0;
 
         public Group(string groupName, string description)
         {
             CheckGroupName(groupName);
-            Id += _lastId;
             GroupName = groupName;
             Description = description;
         }
