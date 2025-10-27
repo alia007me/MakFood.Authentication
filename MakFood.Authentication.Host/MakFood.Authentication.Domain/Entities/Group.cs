@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Domain.Model.Entities
 {
-    public class Group : BaseEntity<Guid>
+    public class Group : BaseEntity<uint>
     {
         private Group() { }
 
         public Group(string groupName, string description)
         {
             CheckGroupName(groupName);
-            Id = Guid.NewGuid();
             GroupName = groupName;
             Description = description;
         }

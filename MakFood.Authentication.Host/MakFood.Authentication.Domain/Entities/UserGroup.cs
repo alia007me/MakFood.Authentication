@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Domain.Model.Entities
 {
-    public class UserGroup : BaseEntity<Guid>
+    public class UserGroup : BaseEntity<uint>
     {
         public UserGroup(uint groupId, Guid userId)
         {
