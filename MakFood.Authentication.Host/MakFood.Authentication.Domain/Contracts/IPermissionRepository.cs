@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Domain.Model.Contracts
 {
-    public interface IUserRepository
+    public interface IPermissionRepository
     {
         void AddPermission(Permission permission);
         Task<Permission> GetPermissionAsync(string service, string method, CancellationToken ct);

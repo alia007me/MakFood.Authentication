@@ -4,6 +4,7 @@ using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Infraustraucture.Context;
 using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Repositories.EF.Repository;
+using MakFood.Authentication.Infraustraucture.Substructure.Utils.LocalAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,7 @@ namespace MakFood.Authentication.DI
 {
     public static class AuthenticationRegistration
     {
-        public static IServiceCollection AuthRegistration(this IServiceCollection services , IConfiguration _config)
+        public static IServiceCollection AuthRegistration(this IServiceCollection services, IConfiguration _config)
         {
 
             services.AddDbContext<AuthDbContext>(options =>
@@ -25,7 +26,7 @@ namespace MakFood.Authentication.DI
                 options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPermissionRepository, PermissionRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMediatR(cfg =>
             {
@@ -33,6 +34,7 @@ namespace MakFood.Authentication.DI
             });
 
             services.AddValidatorsFromAssemblyContaining<DeclaringPermissionCommandValidator>();
+
 
 
             return services;

@@ -1,9 +1,11 @@
 ﻿using MakFood.Authentication.Host.Filters;
+using MakFood.Authentication.Infraustraucture.Substructure.Utils.LocalAccess;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +17,19 @@ namespace Test
     
     public class TestRequireLocalAttribute
     {
+
+
         [Fact]
         public async Task RequireLocal_EnteringWithWrongHostAddress_ShouldNotReturnNullAndAndStatusCodeShouldBe403Async()
         {
             //Arrange
-            var attributeFilter = new RequireLocalAttribute();
+
+            var options = Options.Create(new LocalAccessOptions() { AllowedHost = "localhost", AllowedPort = 7127});
+            var attributeFilter = new RequireLocalFilter(options);
 
 
             var httpContext = new DefaultHttpContext();
-            httpContext.Request.Host = new HostString("111",5225);
+            httpContext.Request.Host = new HostString("localhot", 5228);
             var actionContext = new ActionContext()
             {
                 HttpContext = httpContext,

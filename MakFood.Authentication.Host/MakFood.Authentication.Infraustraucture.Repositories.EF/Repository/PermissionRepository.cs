@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
 {
-    public class UserRepository : IUserRepository
+    public class PermissionRepository : IPermissionRepository
     {
         private readonly AuthDbContext _context;
 
-        public UserRepository(AuthDbContext context)
+        public PermissionRepository(AuthDbContext context)
         {
             _context = context;
         }

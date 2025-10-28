@@ -1,14 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MakFood.Authentication.Infraustraucture.Substructure.Utils.LocalAccess;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
 namespace MakFood.Authentication.Host.Filters
 {
-    public class RequireLocalAttribute : Attribute, IAsyncActionFilter
+    public class RequireLocalAttribute : TypeFilterAttribute
     {
-        private readonly string _allowedHost = "localhost";
-        private readonly int _allowedPort = 7127;
+        public RequireLocalAttribute() : base(typeof(RequireLocalFilter)) { }
+    }
 
+    public class RequireLocalFilter : IAsyncActionFilter
+    {
+        private readonly LocalAccessOptions _local;
+
+        public RequireLocalFilter(IOptions<LocalAccessOptions> local)
+        {
+            _local = local.Value;
+        }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -16,7 +26,7 @@ namespace MakFood.Authentication.Host.Filters
             var host= request.Host.Host;
             var port = request.Host.Port;
 
-            if(!string.Equals(host,_allowedHost, StringComparison.OrdinalIgnoreCase) || _allowedPort != port)
+            if(!string.Equals(host,_local.AllowedHost, StringComparison.OrdinalIgnoreCase) || _local.AllowedPort != port)
             {
                 context.Result = new JsonResult(new
                 {

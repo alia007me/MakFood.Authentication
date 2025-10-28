@@ -1,5 +1,6 @@
 ﻿using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Domain.Model.Entities;
+using MakFood.Authentication.Domain.Model.Enums;
 using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Substructure.Base.ApplicationException;
 using MediatR;
@@ -13,23 +14,37 @@ namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPe
 {
     public class DeclaringPermissionCommandHandler : IRequestHandler<DeclaringPermissionCommand, DeclaringPermissionCommandResponse>
     {
-        public IUserRepository _userRepository;
+        public IPermissionRepository _permissionRepository;
         public IUnitOfWork _unitOfWork;
 
-        public DeclaringPermissionCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public DeclaringPermissionCommandHandler(IPermissionRepository permissionRepository, IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
+            _permissionRepository = permissionRepository;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<DeclaringPermissionCommandResponse> Handle(DeclaringPermissionCommand request, CancellationToken cancellationToken)
         {
-            var permissionToAdd = MakePermission(request.Service, request.Method, request.Description);
-            var permissionInDatabase = await _userRepository.GetPermissionAsync(permissionToAdd.Service,permissionToAdd.Method,cancellationToken);
-            CheckPermission(permissionToAdd, permissionInDatabase);
-            var resultOfSave = await _unitOfWork.Commit(cancellationToken);
+            var newPermission = CreatePermission(request.Service, request.Method, request.Description);
+            var existedPermission = await _permissionRepository.GetPermissionAsync(newPermission.Service,newPermission.Method,cancellationToken);
+
+            if (existedPermission == null)
+            {
+                _permissionRepository.AddPermission(newPermission);
+            }
+            else if (existedPermission != null && existedPermission.Status == PermissionStatus.Deactivated)
+            {
+                existedPermission.ActivatePermission();
+            }
+            else
+            {
+                throw new ObjectExistingInDatabaseApplicationException("Permission Is In Database And It Is Working");
+            }
+
+
+            var savingResult = await _unitOfWork.Commit(cancellationToken);
             
-            if(resultOfSave == 0)
+            if(savingResult == 0)
             {
                 throw new OperationFailedApplicationException("Nothing Added To The DataBase");
             }
@@ -46,25 +61,11 @@ namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPe
 
         }
         #region Private Methods
-        private Permission MakePermission(string service , string method , string? description)
+        private Permission CreatePermission(string service , string method , string? description)
         {
-            return new Permission(service, method, description , true);
+            return new Permission(service, method, description , PermissionStatus.Activated);
         }
-        private void CheckPermission(Permission permissionToAdd , Permission permissionInDatabase)
-        {
-            if(permissionInDatabase == null)
-            {
-                _userRepository.AddPermission(permissionToAdd);
-            }
-            else if(permissionInDatabase != null && permissionInDatabase.IsEnabled == false)
-            {
-                permissionInDatabase.ChangeEnabledStateToTrue();
-            }
-            else
-            {
-                throw new ObjectExistingInDatabaseApplicationException("Permission Is In Database And It Is Working");
-            }
-        }
+
 
         #endregion
     }
