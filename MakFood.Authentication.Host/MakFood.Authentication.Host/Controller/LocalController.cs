@@ -7,11 +7,11 @@ namespace MakFood.Authentication.Host.Controller
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class LocalController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator)
+        public LocalController(IMediator mediator)
         {
             _mediator = mediator;
         }
