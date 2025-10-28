@@ -12,20 +12,32 @@ namespace MakFood.Authentication.Domain.Model.Entities
     {
 
         private Permission() { }
-        public Permission(string service, string method, string description)
+        public Permission(string service, string method, string description, bool isEnabled)
         {
             CheckServiceName(service);
             CheckMethod(method);
             Service = service;
             Method = method;
             Description = description;
+            IsEnabled = isEnabled;
         }
 
         public string Service { get; private set; }
         public string Method { get; private set; }
         public string Key => $"{Service}.{Method}";
         public string? Description { get; private set; }
+        public bool IsEnabled { get; private set; }
 
+
+        public void ChangeEnabledStateToTrue()
+        {
+            IsEnabled = true;
+        }
+
+        public void ChangeEnabledStateToFalse()
+        {
+            IsEnabled = false;
+        }
 
         #region Private Methods
         private void CheckServiceName(string serviceName)

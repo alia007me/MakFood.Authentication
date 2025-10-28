@@ -1,4 +1,9 @@
-﻿using MakFood.Authentication.Infraustraucture.Context;
+﻿using FluentValidation;
+using MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission;
+using MakFood.Authentication.Domain.Model.Contracts;
+using MakFood.Authentication.Infraustraucture.Context;
+using MakFood.Authentication.Infraustraucture.Contract;
+using MakFood.Authentication.Infraustraucture.Repositories.EF.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +24,15 @@ namespace MakFood.Authentication.DI
             {
                 options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(typeof(DeclaringPermissionCommand).Assembly);
+            });
+
+            services.AddValidatorsFromAssemblyContaining<DeclaringPermissionCommandValidator>();
 
 
             return services;
