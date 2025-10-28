@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\" />
+    <ProjectReference Include="..\MakFood.Authentication.Domain\MakFood.Authentication.Domain.Model.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Context\MakFood.Authentication.Infraustraucture.Context.csproj" />
   </ItemGroup>
 
 </Project>

@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MakFood.Authentication.Domain\MakFood.Authentication.Domain.Model.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Contract\MakFood.Authentication.Infraustraucture.Contract.csproj" />
   </ItemGroup>
 
 </Project>

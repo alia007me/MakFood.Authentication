@@ -1,0 +1,19 @@
+﻿using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission
+{
+    public class DeclaringPermissionCommandValidator : AbstractValidator<DeclaringPermissionCommand>
+    {
+        public DeclaringPermissionCommandValidator()
+        {
+            RuleFor(x => x.Service).NotEmpty().WithMessage("Service Name Can't Be Empty");
+            RuleFor(x => x.Method).NotEmpty().WithMessage("Method Name Can't Be Empty");
+
+        }   
+    }
+}
