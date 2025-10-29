@@ -18,14 +18,14 @@ namespace MakFood.Authentication.Domain.Model.Entities
             CheckServiceName(service);
             CheckMethod(method);
             Service = service;
-            Method = method;
+            Name = method;
             Description = description;
             Status = status;
         }
 
         public string Service { get; private set; }
-        public string Method { get; private set; }
-        public string Key => $"{Service}.{Method}";
+        public string Name { get; private set; }
+        public string Key => $"{Service}.{Name}";
         public string? Description { get; private set; }
         public PermissionStatus Status { get; private set; }
 

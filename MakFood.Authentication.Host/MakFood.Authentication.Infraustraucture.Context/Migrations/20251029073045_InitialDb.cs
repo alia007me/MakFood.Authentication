@@ -32,9 +32,10 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Service = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Method = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ComputedKey = table.Column<string>(type: "nvarchar(max)", nullable: true, computedColumnSql: "[Service]+'.'+[Method]")
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ComputedKey = table.Column<string>(type: "nvarchar(max)", nullable: true, computedColumnSql: "[Service]+'.'+[Name]")
                 },
                 constraints: table =>
                 {

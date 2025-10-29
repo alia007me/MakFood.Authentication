@@ -19,11 +19,11 @@ namespace MakFood.Authentication.Infraustraucture.Context.Configuration
             builder.Property(x => x.Service)
                 .IsRequired();
 
-            builder.Property(x => x.Method)
+            builder.Property(x => x.Name)
                 .IsRequired();
 
             builder.Property<string>("ComputedKey")
-                .HasComputedColumnSql("[Service]+'.'+[Method]");
+                .HasComputedColumnSql("[Service]+'.'+[Name]");
 
             builder.Property(x => x.Status)
                 .HasConversion<string>()
