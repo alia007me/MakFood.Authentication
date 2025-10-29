@@ -34,7 +34,7 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermis
             if (permission == null)
                 throw new ObjectNotFoundApplicationException("Permission Not Found !");
 
-            var existingGroupPermission = _groupRepository.GetGroupPermissionAsync(group.Id, permission.Id, cancellationToken);
+            var existingGroupPermission = await _groupRepository.GetGroupPermissionAsync(group.Id, permission.Id, cancellationToken);
             if (existingGroupPermission != null)
                 throw new ObjectExistingInDatabaseApplicationException("This Permission Already Assigned To This Group");
 
