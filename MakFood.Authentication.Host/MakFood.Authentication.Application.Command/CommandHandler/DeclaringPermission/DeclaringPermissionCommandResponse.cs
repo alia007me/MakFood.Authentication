@@ -8,6 +8,10 @@ namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPe
 {
     public class DeclaringPermissionCommandResponse
     {
+        public static DeclaringPermissionCommandResponse Succeed => new()
+        {
+            Success = true,
+        };
         public bool Success { get; set; }
     }
 }

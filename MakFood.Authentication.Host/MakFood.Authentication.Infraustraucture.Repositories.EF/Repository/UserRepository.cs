@@ -30,5 +30,10 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
         {
             return await _users.Include(x=>x.Groups).SelectMany(x=>x.Groups).SingleOrDefaultAsync(x=>x.UserId == userId && x.GroupId == groupId,ct);
         }
+
+        public async Task<bool> IsUserGroupExist(Guid userId , uint groupId, CancellationToken ct)
+        {
+            return await _users.Include(x => x.Groups).SelectMany(c => c.Groups).AnyAsync(x => x.GroupId == groupId && x.UserId == userId , ct);
+        }
     }
 }

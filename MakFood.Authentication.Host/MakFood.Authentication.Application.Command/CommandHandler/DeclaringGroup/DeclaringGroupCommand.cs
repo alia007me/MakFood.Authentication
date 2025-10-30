@@ -11,7 +11,7 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGro
 {
     public class DeclaringGroupCommand : CommandBase, IRequest<DeclaringGroupCommandResponse>
     {
-        public string GroupName { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public override void Validate()
         {

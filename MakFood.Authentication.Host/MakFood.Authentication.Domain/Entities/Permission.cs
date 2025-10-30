@@ -13,14 +13,14 @@ namespace MakFood.Authentication.Domain.Model.Entities
     {
 
         private Permission() { }
-        public Permission(string service, string method, string description, PermissionStatus status)
+        public Permission(string service, string method, string description)
         {
             CheckServiceName(service);
             CheckMethod(method);
             Service = service;
             Name = method;
             Description = description;
-            Status = status;
+            Status = PermissionStatus.Activated;
         }
 
         public string Service { get; private set; }

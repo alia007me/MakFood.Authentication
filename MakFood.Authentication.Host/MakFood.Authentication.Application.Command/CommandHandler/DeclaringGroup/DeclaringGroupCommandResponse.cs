@@ -8,6 +8,10 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGro
 {
     public class DeclaringGroupCommandResponse
     {
+        public static DeclaringGroupCommandResponse Succeeded => new()
+        {
+            Success = true,
+        };
         public bool Success { get; set; }
 
     }

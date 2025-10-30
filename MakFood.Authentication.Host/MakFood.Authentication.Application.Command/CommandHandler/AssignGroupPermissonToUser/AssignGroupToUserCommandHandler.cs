@@ -1,4 +1,5 @@
-﻿using MakFood.Authentication.Domain.Model.Contracts;
+﻿using MakFood.Authentication.Application.Command.Exception;
+using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Domain.Model.Entities;
 using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Substructure.Base.ApplicationException;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup.DeclaringGroupCommandHandler;
 
 namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupPermissonToUser
 {
@@ -26,33 +28,48 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupP
 
         public async Task<AssignGroupToUserCommandResponse> Handle(AssignGroupToUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserAsync(request.Username , cancellationToken);
-            if (user == null)
-                throw new ObjectNotFoundApplicationException("User Not Found !");
-            
-            var group = await _groupRepository.GetGroupAsync(request.GroupName , cancellationToken);
-            if (group == null)
-                throw new ObjectNotFoundApplicationException("Group Not Found !");
+            var user = await _userRepository.GetUserAsync(request.Username, cancellationToken);
+            CheckUserExistance(user);
 
-            var existingUserGroup = await _userRepository.GetUserGroupAsync(user.Id,group.Id,cancellationToken);
-            if (existingUserGroup != null)
-                throw new ObjectExistingInDatabaseApplicationException("This User Has This Group");
+            var group = await _groupRepository.GetGroupAsync(request.GroupName, cancellationToken);
+            CheckGroupExistance(group);
 
-            var userGroup = CreateUserGroup(user.Id,group.Id);
+            await CheckUserGroupExistance(user.Id, group.Id, cancellationToken);
+
+
+            var userGroup = CreateUserGroup(user.Id, group.Id);
             user.AddGroupsToUser(userGroup);
             var savingResult = await _unitOfWork.Commit(cancellationToken);
-            if (savingResult == 0)
-                throw new OperationFailedApplicationException("Nothing Added To The DataBase");
+            savingResult.ThrowIfNoChanges<NoChangesApplicationException>();
 
-            var response = new AssignGroupToUserCommandResponse() { Success = true };
-            return response;
+
+            return AssignGroupToUserCommandResponse.Succeeded;
 
 
         }
+
+
         #region Private Methods
-        private UserGroup CreateUserGroup(Guid userId , uint groupId)
+        private UserGroup CreateUserGroup(Guid userId, uint groupId)
         {
             return new UserGroup(groupId, userId);
+        }
+        private static void CheckGroupExistance(Group group)
+        {
+            if (group == null)
+                throw new GroupIsNotInDatabaseException();
+        }
+
+        private static void CheckUserExistance(User user)
+        {
+            if (user == null)
+                throw new UserIsNotInDatabaseException();
+        }
+        private async Task CheckUserGroupExistance(Guid userId, uint groupId, CancellationToken ct)
+        {
+            var result = await _userRepository.IsUserGroupExist(userId, groupId, ct);
+            if (result)
+                throw new UserGroupIsInDatabaseException();
         }
         #endregion
     }
