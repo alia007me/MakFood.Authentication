@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission
+namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup
 {
-    public class DeclaringPermissionCommandResponse
+    public class DeclaringGroupCommandResponse
     {
-        public static DeclaringPermissionCommandResponse Succeed => new()
+        public static DeclaringGroupCommandResponse Succeeded => new()
         {
             Success = true,
         };
         public bool Success { get; set; }
+
     }
 }

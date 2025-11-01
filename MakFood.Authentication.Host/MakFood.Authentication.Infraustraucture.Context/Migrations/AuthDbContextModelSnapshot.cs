@@ -73,12 +73,12 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                     b.Property<string>("ComputedKey")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("nvarchar(max)")
-                        .HasComputedColumnSql("[Service]+'.'+[Method]");
+                        .HasComputedColumnSql("[Service]+'.'+[Name]");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Method")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

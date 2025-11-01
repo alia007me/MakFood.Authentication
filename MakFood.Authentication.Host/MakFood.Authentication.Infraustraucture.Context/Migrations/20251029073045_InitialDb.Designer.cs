@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakFood.Authentication.Infraustraucture.Context.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20251028125421_AddingPermissionStatusToPermission")]
-    partial class AddingPermissionStatusToPermission
+    [Migration("20251029073045_InitialDb")]
+    partial class InitialDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,12 +76,12 @@ namespace MakFood.Authentication.Infraustraucture.Context.Migrations
                     b.Property<string>("ComputedKey")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("nvarchar(max)")
-                        .HasComputedColumnSql("[Service]+'.'+[Method]");
+                        .HasComputedColumnSql("[Service]+'.'+[Name]");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Method")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

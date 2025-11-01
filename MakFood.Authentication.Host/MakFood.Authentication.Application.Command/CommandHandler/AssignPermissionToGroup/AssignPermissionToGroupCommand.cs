@@ -7,20 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission
+namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermissionToGroup
 {
-    public class DeclaringPermissionCommand : CommandBase, IRequest<DeclaringPermissionCommandResponse>
+    public class AssignPermissionToGroupCommand : CommandBase, IRequest<AssignPermissionToGroupCommandResponse>
     {
         public string Service {  get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-
-
+        public string GroupName { get; set; }
         public override void Validate()
         {
-
-            new DeclaringPermissionCommandValidator().Validate(this).ThrowIfNeeded();
-
+            new AssignPermissionToGroupCommandValidator().Validate(this).ThrowIfNeeded();
         }
     }
 }
