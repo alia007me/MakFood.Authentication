@@ -12,6 +12,8 @@ namespace MakFood.Authentication.Domain.Model.Contracts
         Task<User> GetUserAsync(string username, CancellationToken ct);
         Task<UserGroup> GetUserGroupAsync(Guid userId, uint groupId, CancellationToken ct);
         Task<bool> IsUserGroupExist(Guid userId, uint groupId, CancellationToken ct);
+        Task<List<UserGroup>> GetAllUserGroupsAsync(Guid userId, CancellationToken ct);
+
 
 
     }

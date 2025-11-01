@@ -4,6 +4,7 @@ using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Infraustraucture.Context;
 using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Repositories.EF.Repository;
+using MakFood.Authentication.Infraustraucture.Substructure.Utils.JwsInformation;
 using MakFood.Authentication.Infraustraucture.Substructure.Utils.LocalAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,7 +37,7 @@ namespace MakFood.Authentication.DI
             });
 
             services.AddValidatorsFromAssemblyContaining<DeclaringPermissionCommandValidator>();
-
+            services.Configure<JwsInformationOptions>(_config.GetSection("Jws"));
 
 
             return services;

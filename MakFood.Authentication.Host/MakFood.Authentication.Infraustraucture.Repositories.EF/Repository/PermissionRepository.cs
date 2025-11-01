@@ -28,5 +28,13 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
         {
             return await _context.Permissions.SingleOrDefaultAsync(x => x.Service == service && x.Name == method, ct);
         }
+
+        public async Task<List<Permission>> GetAllPermissionsInOneGroupAsync(List<GroupPermission> groups , CancellationToken ct)
+        {
+            var permissionIds = groups.Select(x => x.PermissionId).ToList();
+
+            return await _context.Permissions.Where(c=> permissionIds.Contains(c.Id)).ToListAsync(ct);
+
+        }
     }
 }

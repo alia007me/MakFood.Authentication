@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{DC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.IntegrationTest", "MakFood.Authentication.IntegrationTest\MakFood.Authentication.IntegrationTest.csproj", "{08C90743-F7AD-4D3B-9942-080F9C06D820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{661D717C-4763-4AD1-A09D-C040FCEDB44E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Authentication.UnitTest", "Test\MakFood.Authentication.UnitTest.csproj", "{661D717C-4763-4AD1-A09D-C040FCEDB44E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,5 +24,7 @@ namespace MakFood.Authentication.Domain.Model.Contracts
 
         Task<Group> GetGroupAsync(string groupName , CancellationToken ct);
         Task<GroupPermission> GetGroupPermissionAsync(uint groupId,uint permissionId , CancellationToken ct);
+        Task<List<GroupPermission>> GetAllGroupPermissionAsync(List<UserGroup> groups, CancellationToken ct);
+
     }
 }

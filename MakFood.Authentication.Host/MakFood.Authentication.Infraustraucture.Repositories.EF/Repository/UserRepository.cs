@@ -23,17 +23,22 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
 
         public async Task<User> GetUserAsync(string username, CancellationToken ct)
         {
-            return await _users.SingleOrDefaultAsync(x=>x.Username == username,ct);
+            return await _users.SingleOrDefaultAsync(x => x.Username == username, ct);
         }
 
-        public async Task<UserGroup> GetUserGroupAsync(Guid userId , uint groupId ,CancellationToken ct)
+        public async Task<UserGroup> GetUserGroupAsync(Guid userId, uint groupId, CancellationToken ct)
         {
-            return await _users.Include(x=>x.Groups).SelectMany(x=>x.Groups).SingleOrDefaultAsync(x=>x.UserId == userId && x.GroupId == groupId,ct);
+            return await _users.Include(x => x.Groups).SelectMany(x => x.Groups).SingleOrDefaultAsync(x => x.UserId == userId && x.GroupId == groupId, ct);
         }
 
-        public async Task<bool> IsUserGroupExist(Guid userId , uint groupId, CancellationToken ct)
+        public async Task<bool> IsUserGroupExist(Guid userId, uint groupId, CancellationToken ct)
         {
-            return await _users.Include(x => x.Groups).SelectMany(c => c.Groups).AnyAsync(x => x.GroupId == groupId && x.UserId == userId , ct);
+            return await _users.Include(x => x.Groups).SelectMany(c => c.Groups).AnyAsync(x => x.GroupId == groupId && x.UserId == userId, ct);
+        }
+
+        public async Task<List<UserGroup>> GetAllUserGroupsAsync(Guid userId, CancellationToken ct)
+        {
+            return await _users.Include(x => x.Groups).SelectMany(x => x.Groups).Where(x => x.UserId == userId).ToListAsync(ct);
         }
     }
 }

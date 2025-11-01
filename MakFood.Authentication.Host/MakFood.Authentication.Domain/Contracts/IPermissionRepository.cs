@@ -11,6 +11,8 @@ namespace MakFood.Authentication.Domain.Model.Contracts
     {
         void AddPermission(Permission permission);
         Task<Permission> GetPermissionAsync(string service, string name, CancellationToken ct);
+        Task<List<Permission>> GetAllPermissionsInOneGroupAsync(List<GroupPermission> groups, CancellationToken ct);
+
 
     }
 }
