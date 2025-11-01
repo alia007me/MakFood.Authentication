@@ -16,7 +16,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MakFood.Authentication.Application.Command\MakFood.Authentication.Application.Command.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Application.Contracts\MakFood.Authentication.Application.Contracts.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Application.Service\MakFood.Authentication.Application.Service.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Domain\MakFood.Authentication.Domain.Model.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Context.Redis\MakFood.Authentication.Infraustraucture.Context.Redis.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Context\MakFood.Authentication.Infraustraucture.Context.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Contract\MakFood.Authentication.Infraustraucture.Contract.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Repositories.EF\MakFood.Authentication.Infraustraucture.Repositories.EF.csproj" />
