@@ -1,4 +1,6 @@
-﻿using MakFood.Authentication.Domain.Model.Contracts;
+﻿using MakFood.Authentication.Application.Command.CommandHandler.DeclaringPermission;
+using MakFood.Authentication.Application.Command.Exception;
+using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Domain.Model.Entities;
 using MakFood.Authentication.Domain.Model.Enums;
 using MakFood.Authentication.Infraustraucture.Contract;
@@ -25,48 +27,34 @@ namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPe
 
         public async Task<DeclaringPermissionCommandResponse> Handle(DeclaringPermissionCommand request, CancellationToken cancellationToken)
         {
-            var newPermission = CreatePermission(request.Service, request.Method, request.Description);
-            var existedPermission = await _permissionRepository.GetPermissionByNameAsync(newPermission.Service,newPermission.Name,cancellationToken);
+            var existedPermission = await _permissionRepository.GetPermissionByNameAsync(request.Service,request.Name,cancellationToken);
 
-            if (existedPermission == null)
+            if (existedPermission is null)
             {
-                _permissionRepository.AddPermission(newPermission);
+                _permissionRepository.AddPermission(request.ToModel());
             }
-            else if (existedPermission != null && existedPermission.Status == PermissionStatus.Deactivated)
+            else if (existedPermission != null)
             {
                 existedPermission.ActivatePermission();
             }
-            else
-            {
-                throw new ObjectExistingInDatabaseApplicationException("Permission Is In Database And It Is Working");
-            }
-
 
             var savingResult = await _unitOfWork.Commit(cancellationToken);
-            
-            if(savingResult == 0)
-            {
-                throw new OperationFailedApplicationException("Nothing Added To The DataBase");
-            }
+            savingResult.ThrowIfNoChanges<NoPermissionChangedException>();
 
-            var response = new DeclaringPermissionCommandResponse()
-            {
-                Success = true,
-            };
+            return DeclaringPermissionCommandResponse.Succeed;
 
-            return response;
+
+
 
 
 
 
         }
         #region Private Methods
-        private Permission CreatePermission(string service , string method , string? description)
-        {
-            return new Permission(service, method, description , PermissionStatus.Activated);
-        }
 
 
         #endregion
     }
+
+
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MakFood.Authentication.Infraustraucture.Contract.IUnitOfWork;
 
 namespace MakFood.Authentication.Infraustraucture.Context
 {
@@ -16,9 +17,10 @@ namespace MakFood.Authentication.Infraustraucture.Context
             _context = context;
         }
 
-        public async Task<int> Commit(CancellationToken ct)
+        public async Task<SavingResult> Commit(CancellationToken ct)
         {
-            return await _context.SaveChangesAsync(ct);
+            var savedChangedStateCount = await _context.SaveChangesAsync(ct);
+            return new SavingResult { ChangesCount = savedChangedStateCount };
         }
     }
 }

@@ -27,11 +27,11 @@ namespace MakFood.Authentication.Host.Controller
             return BadRequest("Group Didn't Add !");
             
         }
-        [HttpPost("{GroupName}/Permissions")]
-        public async Task<IActionResult> AddPermissionToGroup([FromBody] AssignPermissionToGroupCommand command, CancellationToken ct)
+        [HttpPost("{GroupId}/Permissions")]
+        public async Task<IActionResult> AddPermissionToGroup([FromBody] AssignPermissionToGroupCommand command, [FromRoute]uint GroupId, CancellationToken ct)
         {
+            command.groupId = GroupId;
             command.Validate();
-
             var result = await _mediator.Send(command);
             if(result.Success)
                 return Ok("Permission Successfully Added To Group !");

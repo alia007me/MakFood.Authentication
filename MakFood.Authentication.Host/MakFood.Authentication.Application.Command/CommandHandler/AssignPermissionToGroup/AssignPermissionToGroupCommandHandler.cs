@@ -1,4 +1,5 @@
-﻿using MakFood.Authentication.Domain.Model.Contracts;
+﻿using MakFood.Authentication.Application.Command.Exception;
+using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Domain.Model.Entities;
 using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Substructure.Base.ApplicationException;
@@ -8,10 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup.DeclaringGroupCommandHandler;
 
 namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermissionToGroup
 {
-    public class AssignPermissionToGroupCommandHandler : IRequestHandler<AssignPermissionToGroupCommand, AssignPermissionToGroupCommandResponse>
+    public partial class AssignPermissionToGroupCommandHandler : IRequestHandler<AssignPermissionToGroupCommand, AssignPermissionToGroupCommandResponse>
     {
         private readonly IPermissionRepository _permissionRepository;
         private readonly IGroupRepository _groupRepository;
@@ -27,16 +29,12 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermis
         public async Task<AssignPermissionToGroupCommandResponse> Handle(AssignPermissionToGroupCommand request, CancellationToken cancellationToken)
         {
             var group = await _groupRepository.GetGroupByIdAsync(request.groupId, cancellationToken);
-            if (group == null)
-                throw new NotFoundApplicationException("Group Not Found !");
+            CheckGroupExistance(group);
 
             var permission = await _permissionRepository.GetPermissionByIdAsync(request.permissionId, cancellationToken);
-            if (permission == null)
-                throw new NotFoundApplicationException("Permission Not Found !");
+            CheckPermissionExistance(permission);
 
-            var existingGroupPermission = await _groupRepository.GetGroupPermissionAsync(group.Id, permission.Id, cancellationToken);
-            if (existingGroupPermission != null)
-                throw new ObjectExistingInDatabaseApplicationException("This Permission Already Assigned To This Group");
+            await CheckGroupPermissionExistance(group.Id, permission.Id, cancellationToken);
 
 
             var groupPermission = CreateGroupPermission(group.Id, permission.Id);
@@ -44,21 +42,43 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermis
 
             var savingResult = await _unitOfWork.Commit(cancellationToken);
 
-            if (savingResult == 0)
-                throw new OperationFailedApplicationException("Nothing Added To The DataBase");
+            savingResult.ThrowIfNoChanges<NoChangesApplicationException>();
 
-            var response = new AssignPermissionToGroupCommandResponse() { Success = true };
-            return response;
+            return AssignPermissionToGroupCommandResponse.Succeeded;
 
 
 
 
         }
+
+
+
+
         #region Private Methods
+        private async Task CheckGroupPermissionExistance(uint groupId, uint permissionId, CancellationToken ct)
+        {
+            var existingGroup = await _groupRepository.IsGroupPermissionExist(groupId, permissionId, ct);
+
+            if (existingGroup)
+                throw new GroupPermissionExistInDatabaseException();
+        }
+
+        private static void CheckPermissionExistance(Permission permission)
+        {
+            if (permission is null)
+                throw new PermissionIsNotInDatabaseException();
+        }
+
+        private static void CheckGroupExistance(Group group)
+        {
+            if (group is null)
+                throw new GroupIsNotInDatabaseException();
+        }
         private GroupPermission CreateGroupPermission(uint groupId, uint permissionId)
         {
             return new GroupPermission(permissionId, groupId);
         }
+
         #endregion
     }
 }

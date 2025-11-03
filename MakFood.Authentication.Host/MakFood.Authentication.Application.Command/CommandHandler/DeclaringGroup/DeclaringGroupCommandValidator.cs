@@ -11,7 +11,7 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGro
     {
         public DeclaringGroupCommandValidator()
         {
-            RuleFor(x=>x.GroupName).NotEmpty().WithMessage("Group name can't be null !");
+            RuleFor(x=>x.Name).NotEmpty().WithMessage("Group name can't be null !");
             RuleFor(x => x.Description).NotEmpty().WithMessage("Description Is neccessary in group !");
         }
     }

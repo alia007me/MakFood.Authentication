@@ -1,5 +1,4 @@
 ﻿using MakFood.Authentication.Domain.Model.Contracts;
-using MakFood.Authentication.Domain.Model.Entities;
 using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Substructure.Base.ApplicationException;
 using MediatR;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup
 {
-    public class DeclaringGroupCommandHandler : IRequestHandler<DeclaringGroupCommand, DeclaringGroupCommandResponse>
+    public partial class DeclaringGroupCommandHandler : IRequestHandler<DeclaringGroupCommand, DeclaringGroupCommandResponse>
     {
         private readonly IGroupRepository _groupRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -22,33 +21,26 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGro
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<DeclaringGroupCommandResponse> Handle(DeclaringGroupCommand request, CancellationToken cancellationToken)
+        public async Task<DeclaringGroupCommandResponse> Handle(DeclaringGroupCommand command, CancellationToken cancellationToken)
         {
-            var newGroup = CreateGroup(request.GroupName, request.Description);
-            var existingGroup = await _groupRepository.GetGroupByNameAsync(newGroup.GroupName ,cancellationToken);
+            await CheckForExistence(command.Name, cancellationToken);
 
-            if (existingGroup != null)
-                throw new ObjectExistingInDatabaseApplicationException("This Group With This Name Is In Database");
+            _groupRepository.AddGroup(command.ToModel());
 
-            _groupRepository.AddGroup(newGroup);
             var savingResult = await _unitOfWork.Commit(cancellationToken);
 
-            if (savingResult == 0) 
-                throw new OperationFailedApplicationException("Nothing Added To The DataBase");
+            savingResult.ThrowIfNoChanges<NoGroupChangedException>();
 
-            var respone = new DeclaringGroupCommandResponse() { Success = true };
-            return respone;
+            return DeclaringGroupCommandResponse.Succeeded;
 
         }
 
-
-
-        #region Private Methods
-        private Group CreateGroup(string groupName, string description)
+        private async Task CheckForExistence(string groupName, CancellationToken ct)
         {
-            return new Group(groupName, description);
-        }
+            var existingGroup = await _groupRepository.IsGroupExist(groupName, ct);
 
-        #endregion
+            if (existingGroup)
+                throw new GroupIsInDatabaseException();
+        }
     }
 }

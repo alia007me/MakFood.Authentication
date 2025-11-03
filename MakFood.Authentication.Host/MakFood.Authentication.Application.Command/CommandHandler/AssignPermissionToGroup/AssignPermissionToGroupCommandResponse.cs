@@ -8,6 +8,10 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermis
 {
     public class AssignPermissionToGroupCommandResponse
     {
+        public static AssignPermissionToGroupCommandResponse Succeeded => new()
+        {
+            Success = true,
+        };
         public bool Success {  get; set; }
     }
 }

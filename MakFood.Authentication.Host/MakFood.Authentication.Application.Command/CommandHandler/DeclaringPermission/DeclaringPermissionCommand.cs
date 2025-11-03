@@ -12,7 +12,7 @@ namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPe
     public class DeclaringPermissionCommand : CommandBase, IRequest<DeclaringPermissionCommandResponse>
     {
         public string Service {  get; set; }
-        public string Method { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
 
 

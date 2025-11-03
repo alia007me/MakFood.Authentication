@@ -17,8 +17,9 @@ namespace MakFood.Authentication.Host.Controller
         }
         [RequireLocal]
         [HttpPost("{service}/AddPermission")]
-        public async Task<IActionResult> AddPermission([FromBody]DeclaringPermissionCommand command , CancellationToken ct)
+        public async Task<IActionResult> AddPermission([FromBody]DeclaringPermissionCommand command, [FromRoute] string service , CancellationToken ct)
         {
+            command.Service = service;
             command.Validate();
 
             var result = await _mediator.Send(command, ct);
