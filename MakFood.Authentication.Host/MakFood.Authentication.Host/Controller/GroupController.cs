@@ -15,7 +15,7 @@ namespace MakFood.Authentication.Host.Controller
             _mediator = mediator;
         }
 
-        [HttpPost("AddGroup")]
+        [HttpPost()]
         public async Task<IActionResult> AddGroup([FromBody] DeclaringGroupCommand command , CancellationToken ct)
         {
             command.Validate();
