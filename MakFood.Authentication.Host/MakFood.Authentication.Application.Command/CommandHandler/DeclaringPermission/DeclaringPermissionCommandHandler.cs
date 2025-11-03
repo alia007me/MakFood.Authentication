@@ -26,7 +26,7 @@ namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPe
         public async Task<DeclaringPermissionCommandResponse> Handle(DeclaringPermissionCommand request, CancellationToken cancellationToken)
         {
             var newPermission = CreatePermission(request.Service, request.Method, request.Description);
-            var existedPermission = await _permissionRepository.GetPermissionAsync(newPermission.Service,newPermission.Method,cancellationToken);
+            var existedPermission = await _permissionRepository.GetPermissionByNameAsync(newPermission.Service,newPermission.Name,cancellationToken);
 
             if (existedPermission == null)
             {

@@ -10,6 +10,8 @@ namespace MakFood.Authentication.Domain.Model.Contracts
     public interface IGroupRepository
     {
         void AddGroup(Group group);
-        Task<Group> GetGroupAsync(string groupName , CancellationToken ct);
+        Task<Group> GetGroupByIdAsync(uint groupId, CancellationToken ct);
+        Task<Group> GetGroupByNameAsync(string groupName, CancellationToken ct);
+        Task<GroupPermission> GetGroupPermissionAsync(uint groupId,uint permissionId , CancellationToken ct);
     }
 }

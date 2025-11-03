@@ -1,4 +1,5 @@
-﻿using MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup;
+﻿using MakFood.Authentication.Application.Command.CommandHandler.AssignPermissionToGroup;
+using MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,10 +22,22 @@ namespace MakFood.Authentication.Host.Controller
             command.Validate();
 
             var result = await _mediator.Send(command);
-            if(result.Success) 
+            if (result.Success)
                 return Ok("Group Added Successfully");
             return BadRequest("Group Didn't Add !");
             
+        }
+        [HttpPost("{GroupName}/Permissions")]
+        public async Task<IActionResult> AddPermissionToGroup([FromBody] AssignPermissionToGroupCommand command, CancellationToken ct)
+        {
+            command.Validate();
+
+            var result = await _mediator.Send(command);
+            if(result.Success)
+                return Ok("Permission Successfully Added To Group !");
+            return BadRequest("Permissions Didn't Add !");
+
+
         }
     }
 }

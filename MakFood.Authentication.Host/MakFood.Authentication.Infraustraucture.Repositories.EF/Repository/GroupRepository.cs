@@ -12,7 +12,7 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
 {
     public class GroupRepository : IGroupRepository
     {
-        public DbSet<Group> _groups { get; private set; }
+        private readonly DbSet<Group> _groups;
 
         public GroupRepository(AuthDbContext groups)
         {
@@ -24,9 +24,20 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
             _groups.Add(group);
         }
 
-        public async Task<Group> GetGroupAsync(string groupName, CancellationToken ct)
+        public async Task<Group> GetGroupByIdAsync(uint groupId, CancellationToken ct)
         {
-            return await _groups.SingleOrDefaultAsync(x => x.GroupName.ToLower() == groupName.ToLower(), ct);
+            return await _groups.SingleOrDefaultAsync(x => x.Id == groupId, ct);
+        }
+
+        public async Task<Group> GetGroupByNameAsync(string groupName, CancellationToken ct)
+        {
+            return await _groups.SingleOrDefaultAsync(x => x.GroupName.ToLower() == groupName.ToLower() , ct);
+        }
+
+        public async Task<GroupPermission> GetGroupPermissionAsync(uint groupId, uint permissionId, CancellationToken ct)
+        {
+            return await _groups.Include(x=>x.Permissions).SelectMany(x=>x.Permissions)
+                .SingleOrDefaultAsync(x => x.GroupId == groupId && x.PermissionId == permissionId, ct);
         }
     }
 }
