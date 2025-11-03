@@ -26,7 +26,7 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
 
         public async Task<Group> GetGroupAsync(string groupName, CancellationToken ct)
         {
-            return await _groups.SingleOrDefaultAsync(x => x.GroupName == groupName, ct);
+            return await _groups.SingleOrDefaultAsync(x => x.GroupName.ToLower() == groupName.ToLower(), ct);
         }
 
         public async Task<GroupPermission> GetGroupPermissionAsync(uint groupId, uint permissionId, CancellationToken ct)
