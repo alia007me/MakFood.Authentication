@@ -21,9 +21,9 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
 
         }
 
-        public async Task<User> GetUserAsync(string username, CancellationToken ct)
+        public async Task<User> GetUserByIdAsync(Guid Id, CancellationToken ct)
         {
-            return await _users.SingleOrDefaultAsync(x => x.Username == username, ct);
+            return await _users.SingleOrDefaultAsync(x=>x.Id == Id,ct);
         }
 
         public async Task<UserGroup> GetUserGroupAsync(Guid userId, uint groupId, CancellationToken ct)

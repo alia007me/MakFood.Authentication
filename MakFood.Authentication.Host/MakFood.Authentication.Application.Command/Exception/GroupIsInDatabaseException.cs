@@ -5,7 +5,7 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGro
 
 
 
-    public class GroupIsInDatabaseException : ObjectNotFoundApplicationException
+    public class GroupIsInDatabaseException : NotFoundApplicationException
     {
         public GroupIsInDatabaseException() : base("This Group With This Name Is In Database") { }
     }

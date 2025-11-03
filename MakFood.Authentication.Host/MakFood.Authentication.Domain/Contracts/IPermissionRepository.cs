@@ -10,7 +10,8 @@ namespace MakFood.Authentication.Domain.Model.Contracts
     public interface IPermissionRepository
     {
         void AddPermission(Permission permission);
-        Task<Permission> GetPermissionAsync(string service, string name, CancellationToken ct);
+        Task<Permission> GetPermissionByIdAsync(uint Id, CancellationToken ct);
+        Task<Permission> GetPermissionByNameAsync(string service ,string name, CancellationToken ct);
         Task<List<Permission>> GetAllPermissionsInOneGroupAsync(List<GroupPermission> groups, CancellationToken ct);
 
 

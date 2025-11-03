@@ -22,8 +22,8 @@ namespace MakFood.Authentication.Domain.Model.Contracts
         Task<bool> IsGroupPermissionExist(uint groupId, uint permissionId, CancellationToken ct);
 
 
-        Task<Group> GetGroupAsync(string groupName , CancellationToken ct);
-        Task<GroupPermission> GetGroupPermissionAsync(uint groupId,uint permissionId , CancellationToken ct);
+        Task<Group> GetGroupByIdAsync(uint groupId, CancellationToken ct);
+        Task<Group> GetGroupByNameAsync(string groupName, CancellationToken ct);
         Task<List<GroupPermission>> GetAllGroupPermissionAsync(List<UserGroup> groups, CancellationToken ct);
 
     }

@@ -11,9 +11,9 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermis
 {
     public class AssignPermissionToGroupCommand : CommandBase, IRequest<AssignPermissionToGroupCommandResponse>
     {
-        public string Service {  get; set; }
-        public string Name { get; set; }
-        public string GroupName { get; set; }
+        public uint permissionId { get; set; }
+        public uint groupId { get; set; }
+
         public override void Validate()
         {
             new AssignPermissionToGroupCommandValidator().Validate(this).ThrowIfNeeded();

@@ -28,10 +28,10 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupP
 
         public async Task<AssignGroupToUserCommandResponse> Handle(AssignGroupToUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserAsync(request.Username, cancellationToken);
+            var user = await _userRepository.GetUserByIdAsync(request.UserId, cancellationToken);
             CheckUserExistance(user);
 
-            var group = await _groupRepository.GetGroupAsync(request.GroupName, cancellationToken);
+            var group = await _groupRepository.GetGroupByIdAsync(request.groupId, cancellationToken);
             CheckGroupExistance(group);
 
             await CheckUserGroupExistance(user.Id, group.Id, cancellationToken);

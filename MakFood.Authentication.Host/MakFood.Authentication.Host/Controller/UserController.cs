@@ -15,9 +15,11 @@ namespace MakFood.Authentication.Host.Controller
             _mediator = mediator;
         }
 
-        [HttpPost("SuperAdmin/{userId}/AddGroup")]
-        public async Task<IActionResult> AddGroupToUser([FromBody] AssignGroupToUserCommand command, CancellationToken ct)
+        [HttpPost("{userId}/groups/{groupId}/assign")]
+        public async Task<IActionResult> AddGroupToUser([FromBody] AssignGroupToUserCommand command, [FromRoute] Guid userId , [FromRoute] uint groupId, CancellationToken ct)
         {
+            command.UserId = userId;
+            command.groupId = groupId;
             command.Validate();
 
             var result = await _mediator.Send(command);

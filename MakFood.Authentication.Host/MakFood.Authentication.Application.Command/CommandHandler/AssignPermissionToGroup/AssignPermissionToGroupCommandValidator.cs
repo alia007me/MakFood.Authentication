@@ -11,9 +11,8 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermis
     {
         public AssignPermissionToGroupCommandValidator()
         {
-            RuleFor(x => x.Service).NotEmpty().WithMessage("Service Name is necessary");
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name of api is necessary");
-            RuleFor(x => x.GroupName).NotEmpty().WithMessage("GroupName is necessary");
+            RuleFor(x => x.permissionId).NotEmpty().WithMessage("permissionId is necessary");
+            RuleFor(x => x.groupId).NotEmpty().WithMessage("groupId is necessary");
         }
     }
 }

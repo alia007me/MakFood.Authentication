@@ -2,7 +2,7 @@
 
 namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermissionToGroup
 {
-    public class PermissionIsNotInDatabaseException : ObjectNotFoundApplicationException
+    public class PermissionIsNotInDatabaseException : NotFoundApplicationException
     {
         public PermissionIsNotInDatabaseException() : base("Permission Exist in Database") { }
     }

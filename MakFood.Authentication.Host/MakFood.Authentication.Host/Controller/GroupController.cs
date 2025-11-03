@@ -16,8 +16,8 @@ namespace MakFood.Authentication.Host.Controller
             _mediator = mediator;
         }
 
-        [HttpPost("SuperAdmin/Group/AddGroup")]
-        public async Task<IActionResult> AddGroup([FromBody] DeclaringGroupCommand command, CancellationToken ct)
+        [HttpPost()]
+        public async Task<IActionResult> AddGroup([FromBody] DeclaringGroupCommand command , CancellationToken ct)
         {
             command.Validate();
 
@@ -25,13 +25,13 @@ namespace MakFood.Authentication.Host.Controller
             if (result.Success)
                 return Ok("Group Added Successfully");
             return BadRequest("Group Didn't Add !");
-
+            
         }
-        [HttpPost("SuperAdmin/Group/{GroupName}/Permission")]
-        public async Task<IActionResult> AddPermissionToGroup([FromBody] AssignPermissionToGroupCommand command, CancellationToken ct)
+        [HttpPost("{GroupId}/Permissions")]
+        public async Task<IActionResult> AddPermissionToGroup([FromBody] AssignPermissionToGroupCommand command, [FromRoute]uint GroupId, CancellationToken ct)
         {
+            command.groupId = GroupId;
             command.Validate();
-
             var result = await _mediator.Send(command);
             if(result.Success)
                 return Ok("Permission Successfully Added To Group !");
