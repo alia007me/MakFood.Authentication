@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MakFood.Authentication.Application.Command\MakFood.Authentication.Application.Command.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Application.Contracts\MakFood.Authentication.Application.Contracts.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Domain\MakFood.Authentication.Domain.Model.csproj" />
+    <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Repositories.EF\MakFood.Authentication.Infraustraucture.Repositories.EF.csproj" />
+  </ItemGroup>
+
 </Project>

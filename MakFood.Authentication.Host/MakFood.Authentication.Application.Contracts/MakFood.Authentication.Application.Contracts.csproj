@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MakFood.Authentication.Domain\MakFood.Authentication.Domain.Model.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -38,11 +38,18 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
         public async Task<bool> IsGroupExist(string name, CancellationToken ct)
             => await _groups.AnyAsync(c => c.GroupName == name, ct);
 
-        public async Task<bool> IsGroupPermissionExist(uint groupId , uint permissionId, CancellationToken ct)
-            => await _groups.Include(c=>c.Permissions).SelectMany(x=>x.Permissions).AnyAsync(x=>x.GroupId == groupId && x.PermissionId == permissionId, ct);
+        public async Task<bool> IsGroupPermissionExist(uint groupId, uint permissionId, CancellationToken ct)
+            => await _groups.Include(c => c.Permissions).SelectMany(x => x.Permissions).AnyAsync(x => x.GroupId == groupId && x.PermissionId == permissionId, ct);
 
 
 
+        public async Task<List<GroupPermission>> GetAllGroupPermissionAsync(List<UserGroup> groups, CancellationToken ct)
+        {
+            var groupIds = groups.Select(x => x.GroupId).ToList();
+            return await _groups.Include(x=>x.Permissions)
+                .SelectMany(x=>x.Permissions).Where(x=> groupIds.Contains(x.GroupId)).ToListAsync(ct);
+
+        }
 
     }
 }
