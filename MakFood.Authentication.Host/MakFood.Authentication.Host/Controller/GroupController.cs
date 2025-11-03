@@ -15,7 +15,7 @@ namespace MakFood.Authentication.Host.Controller
             _mediator = mediator;
         }
 
-        [HttpPost("SuperAdmin/AddGroup")]
+        [HttpPost("AddGroup")]
         public async Task<IActionResult> AddGroup([FromBody] DeclaringGroupCommand command , CancellationToken ct)
         {
             command.Validate();
@@ -24,7 +24,7 @@ namespace MakFood.Authentication.Host.Controller
             if(result.Success) 
                 return Ok("Group Added Successfully");
             return BadRequest("Group Didn't Add !");
-
+            
         }
     }
 }
