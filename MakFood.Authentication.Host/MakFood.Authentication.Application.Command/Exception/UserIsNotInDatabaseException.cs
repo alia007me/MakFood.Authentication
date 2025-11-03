@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Application.Command.Exception
 {
-    public class UserIsNotInDatabaseException : ObjectNotFoundApplicationException
+    public class UserIsNotInDatabaseException : NotFoundApplicationException
     {
         public UserIsNotInDatabaseException() : base("User Is Not In Database") { }
     }

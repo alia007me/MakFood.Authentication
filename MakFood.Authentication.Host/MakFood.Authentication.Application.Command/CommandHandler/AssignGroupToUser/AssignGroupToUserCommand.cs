@@ -11,8 +11,8 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupP
 {
     public class AssignGroupToUserCommand : CommandBase, IRequest<AssignGroupToUserCommandResponse>
     {
-        public string GroupName { get; set; }
-        public string Username { get; set; }
+        public uint groupId { get; set; }
+        public Guid UserId { get; set; }
         public override void Validate()
         {
             new AssignGroupToUserCommandValidator().Validate(this).ThrowIfNeeded();
