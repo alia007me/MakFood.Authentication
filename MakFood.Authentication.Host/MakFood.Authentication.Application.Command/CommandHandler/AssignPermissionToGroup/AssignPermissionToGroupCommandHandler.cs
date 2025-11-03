@@ -26,13 +26,13 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermis
 
         public async Task<AssignPermissionToGroupCommandResponse> Handle(AssignPermissionToGroupCommand request, CancellationToken cancellationToken)
         {
-            var group = await _groupRepository.GetGroupAsync(request.GroupName, cancellationToken);
+            var group = await _groupRepository.GetGroupByIdAsync(request.groupId, cancellationToken);
             if (group == null)
-                throw new ObjectNotFoundApplicationException("Group Not Found !");
+                throw new NotFoundApplicationException("Group Not Found !");
 
-            var permission = await _permissionRepository.GetPermissionAsync(request.Service, request.Name, cancellationToken);
+            var permission = await _permissionRepository.GetPermissionByIdAsync(request.permissionId, cancellationToken);
             if (permission == null)
-                throw new ObjectNotFoundApplicationException("Permission Not Found !");
+                throw new NotFoundApplicationException("Permission Not Found !");
 
             var existingGroupPermission = await _groupRepository.GetGroupPermissionAsync(group.Id, permission.Id, cancellationToken);
             if (existingGroupPermission != null)

@@ -25,7 +25,7 @@ namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGro
         public async Task<DeclaringGroupCommandResponse> Handle(DeclaringGroupCommand request, CancellationToken cancellationToken)
         {
             var newGroup = CreateGroup(request.GroupName, request.Description);
-            var existingGroup = await _groupRepository.GetGroupAsync(newGroup.GroupName ,cancellationToken);
+            var existingGroup = await _groupRepository.GetGroupByNameAsync(newGroup.GroupName ,cancellationToken);
 
             if (existingGroup != null)
                 throw new ObjectExistingInDatabaseApplicationException("This Group With This Name Is In Database");

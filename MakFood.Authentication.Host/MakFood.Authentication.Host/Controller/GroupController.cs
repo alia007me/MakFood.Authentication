@@ -27,7 +27,7 @@ namespace MakFood.Authentication.Host.Controller
             return BadRequest("Group Didn't Add !");
             
         }
-        [HttpPost("SuperAdmin/Group/{GroupName}/Permission")]
+        [HttpPost("{GroupName}/Permission")]
         public async Task<IActionResult> AddPermissionToGroup([FromBody] AssignPermissionToGroupCommand command, CancellationToken ct)
         {
             command.Validate();
