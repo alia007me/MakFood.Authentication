@@ -27,6 +27,7 @@ namespace MakFood.Authentication.DI
             });
 
             services.AddScoped<IPermissionRepository, PermissionRepository>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMediatR(cfg =>
             {
