@@ -9,6 +9,7 @@ using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Repositories.EF.Repository;
 using MakFood.Authentication.Infraustraucture.Substructure.Utils.JwsInformation;
 using MakFood.Authentication.Infraustraucture.Substructure.Utils.LocalAccess;
+using MakFood.FBI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +37,7 @@ namespace MakFood.Authentication.DI
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IJwsService, JwsService>();
-            services.AddScoped<IRedisCache,RedisCache>();
+            services.AddSingleton<IRedisCache,RedisCache>();
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(typeof(DeclaringPermissionCommand).Assembly);
@@ -47,9 +48,11 @@ namespace MakFood.Authentication.DI
                 var configuration = _config.GetConnectionString("Redis");
                 return ConnectionMultiplexer.Connect(configuration);
             });
+            
 
             services.AddValidatorsFromAssemblyContaining<DeclaringPermissionCommandValidator>();
             services.Configure<JwsInformationOptions>(_config.GetSection("Jws"));
+            services.AuthRegister(_config);
 
 
             return services;
