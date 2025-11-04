@@ -8,36 +8,26 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
+using MakFood.Authentication.Infraustraucture.Substructure.Helpers;
 namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
 {
     public static class DataInitializer
     {
         public static void SeedSuperAdmin(this AuthDbContext context)
         {
-            if (context.Users.Any(u => u.IsSuperAdmin))
+            if (context.Users.Any(u => u.Role== Role.SuperAdmin))
                 return;
             var superAdmin = new User(
                 username: "Aunt",
                 password: "StrongPass123!", 
                 phonenumber: "09196252346",
-                role: Role.Admin
+                role: Role.SuperAdmin
             );
 
-            superAdmin.PasswordHash = HashPassword("Aunt");
-            superAdmin.IsSuperAdmin = true;
             superAdmin.CreatedAt = DateTime.UtcNow;
-
             context.Users.Add(superAdmin);
+            superAdmin.PasswordHash = HashHelper.ComputeSha256("StrongPass123");
         }
-        private static string HashPassword(string password)
-        {
-            using (var sha256 = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(password);
-                var hash = sha256.ComputeHash(bytes);
-                return Convert.ToBase64String(hash);
-            }
-        }
+    
     }
 }

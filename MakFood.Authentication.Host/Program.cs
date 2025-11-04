@@ -15,7 +15,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AuthRegistration(builder.Configuration);
 builder.Services.Configure<LocalAccessOptions>(builder.Configuration.GetSection("LocalAccess"));
 
-
 var app = builder.Build();
 if (app.Environment.IsDevelopment())    
 {

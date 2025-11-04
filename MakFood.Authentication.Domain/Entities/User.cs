@@ -48,7 +48,6 @@ namespace MakFood.Authentication.Domain.Model.Entities
         public string Phonenumber { get; private set; }
         public Role Role { get; private set; } 
         public string PasswordHash { get; set; }
-        public bool IsSuperAdmin { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public IEnumerable<UserGroup> Groups => _groups.AsReadOnly();
