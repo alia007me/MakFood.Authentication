@@ -23,6 +23,7 @@
     <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Context\MakFood.Authentication.Infraustraucture.Context.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Contract\MakFood.Authentication.Infraustraucture.Contract.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Infraustraucture.Repositories.EF\MakFood.Authentication.Infraustraucture.Repositories.EF.csproj" />
+    <ProjectReference Include="..\MakFood.FBI\MakFood.FBI.csproj" />
   </ItemGroup>
 
 </Project>
