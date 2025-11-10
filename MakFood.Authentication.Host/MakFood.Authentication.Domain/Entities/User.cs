@@ -37,7 +37,8 @@ namespace MakFood.Authentication.Domain.Model.Entities
         public string? Gmail { get; private set; }
         public string Phonenumber { get; private set; }
         public Role Role { get; private set; }
-        public DateTime CreatedAt { get; set; }
+        public string PasswordHash { get; set; }
+        public DateTime CreatedAt { get;  private set; } = DateTime.Now;
 
         public IEnumerable<UserGroup> Groups => _groups.AsReadOnly();
 

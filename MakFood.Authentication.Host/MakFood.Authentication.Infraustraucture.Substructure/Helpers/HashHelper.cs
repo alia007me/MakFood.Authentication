@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MakFood.Authentication.Infraustraucture.Substructure.Helpers
 {
@@ -12,14 +8,37 @@ namespace MakFood.Authentication.Infraustraucture.Substructure.Helpers
         public static string ComputeSha256(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
-                throw new ArgumentNullException(nameof(input));
+                throw new ArgumentException("Input cannot be empty.", nameof(input));
 
-            using (var sha256 = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(input);
-                var hash = sha256.ComputeHash(bytes);
-                return Convert.ToBase64String(hash);
-            }
+            using var sha = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(input);
+            var hashBytes = sha.ComputeHash(bytes);
+            var builder = new StringBuilder();
+
+            foreach (var b in hashBytes)
+                builder.Append(b.ToString("x2"));
+
+            return builder.ToString();
+        }
+        public static string ComputeChecksum(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                throw new ArgumentException("Input cannot be empty.", nameof(input));
+            var bytes = Encoding.UTF8.GetBytes(input);
+            uint sum = 0;
+
+            foreach (var b in bytes)
+                sum = (sum + b) % 0xFFFFFFFF;
+            return sum.ToString("X8");
+        }
+
+        public static bool VerifyChecksum(string input, string expectedChecksum)
+        {
+            if (expectedChecksum == null)
+                throw new ArgumentNullException(nameof(expectedChecksum));
+
+            var actual = ComputeChecksum(input);
+            return string.Equals(actual, expectedChecksum, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
