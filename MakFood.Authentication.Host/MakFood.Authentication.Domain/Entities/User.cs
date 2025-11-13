@@ -38,7 +38,6 @@ namespace MakFood.Authentication.Domain.Model.Entities
         public string Phonenumber { get; private set; }
         public Role Role { get; private set; }
 
-
         public IEnumerable<UserGroup> Groups => _groups.AsReadOnly();
 
 
