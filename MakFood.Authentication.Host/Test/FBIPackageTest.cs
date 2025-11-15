@@ -1,5 +1,4 @@
-﻿
-using MakFood.Authentication.Infraustraucture.Contract;
+﻿using MakFood.FBI.Contracts;
 using MakFood.FBI.Middleware;
 using MakFood.FBI.Utils;
 using Microsoft.AspNetCore.Http;
@@ -24,8 +23,8 @@ namespace MakFood.Authentication.UnitTest
             {
                 return Task.CompletedTask;
             };
-            var redisMock = new Mock<IRedisCache>();
-            var options = Options.Create(new JwsLocalOptions("Key","Issuer","Audience"));
+            var redisMock = new Mock<IRedis>();
+            var options = Options.Create(new JwsLocalOptions("Key", "Issuer", "Audience"));
             var sut = new AuthorizationMiddleware(next, redisMock.Object, options);
 
 
@@ -49,7 +48,7 @@ namespace MakFood.Authentication.UnitTest
             {
                 return Task.CompletedTask;
             };
-            var redisMock = new Mock<IRedisCache>();
+            var redisMock = new Mock<IRedis>();
             var options = Options.Create(new JwsLocalOptions("Key", "Issuer", "Audience"));
             var sut = new AuthorizationMiddleware(next, redisMock.Object, options);
 
@@ -89,7 +88,7 @@ namespace MakFood.Authentication.UnitTest
                 return Task.CompletedTask;
             };
             var options = Options.Create(new JwsLocalOptions("ThisIsASuperStrongSecretKeyForJwt123456!", "Issuer", "Audience"));
-            var redisMock = new Mock<IRedisCache>();
+            var redisMock = new Mock<IRedis>();
             redisMock.Setup(x => x.CheckKeyExistanceInRedis(It.IsAny<string>())).ReturnsAsync(true);
             var sut = new AuthorizationMiddleware(next, redisMock.Object, options);
 
