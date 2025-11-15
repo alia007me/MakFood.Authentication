@@ -1,25 +1,20 @@
-﻿using MakFood.Authentication.Infraustraucture.Contract;
+﻿using MakFood.FBI.Contracts;
 using MakFood.FBI.Utils;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MakFood.FBI.Middleware
 {
     public class AuthorizationMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IRedisCache _redis;
+        private readonly IRedis _redis;
         private readonly JwsLocalOptions _jwsOptions;
-        public AuthorizationMiddleware(RequestDelegate next, IRedisCache redis, IOptions<JwsLocalOptions> jwsOptions)
+        public AuthorizationMiddleware(RequestDelegate next, IRedis redis, IOptions<JwsLocalOptions> jwsOptions)
         {
             _next = next;
             _redis = redis;
