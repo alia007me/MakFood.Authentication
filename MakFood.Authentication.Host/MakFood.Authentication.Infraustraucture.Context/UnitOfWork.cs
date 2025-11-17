@@ -22,5 +22,11 @@ namespace MakFood.Authentication.Infraustraucture.Context
             var savedChangedStateCount = await _context.SaveChangesAsync(ct);
             return new SavingResult { ChangesCount = savedChangedStateCount };
         }
+        public SavingResult Commit()
+        {
+            var saved = _context.SaveChanges();
+            return new SavingResult { ChangesCount = saved };
+
+        }
     }
 }
