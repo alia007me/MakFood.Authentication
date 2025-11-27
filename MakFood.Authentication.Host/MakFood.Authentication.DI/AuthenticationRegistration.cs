@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission;
+using MakFood.Authentication.Application.Command.CommandHandler.DeclaringPermission;
 using MakFood.Authentication.Application.Contracts;
 using MakFood.Authentication.Application.Service.JwsService;
 using MakFood.Authentication.Domain.Model.Contracts;

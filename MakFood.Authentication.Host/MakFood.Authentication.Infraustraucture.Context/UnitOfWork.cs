@@ -17,7 +17,7 @@ namespace MakFood.Authentication.Infraustraucture.Context
             _context = context;
         }
 
-        public async Task<SavingResult> Commit(CancellationToken ct)
+        public async Task<SavingResult> Commit(CancellationToken ct = default)
         {
             var savedChangedStateCount = await _context.SaveChangesAsync(ct);
             return new SavingResult { ChangesCount = savedChangedStateCount };

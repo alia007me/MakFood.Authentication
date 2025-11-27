@@ -1,6 +1,6 @@
 ﻿using MakFood.Authentication.Infraustraucture.Substructure.Base.ApplicationException;
 
-namespace MakFood.Authentication.Application.Command.CommandHandler.AssignPermissionToGroup
+namespace MakFood.Authentication.Application.Command.Exception
 {
 
     public class GroupPermissionExistInDatabaseException : ObjectExistingInDatabaseApplicationException

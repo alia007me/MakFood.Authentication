@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup.DeclaringGroupCommandHandler;
 
-namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupPermissonToUser
+namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupToUser
 {
     public class AssignGroupToUserCommandHandler : IRequestHandler<AssignGroupToUserCommand, AssignGroupToUserCommandResponse>
     {

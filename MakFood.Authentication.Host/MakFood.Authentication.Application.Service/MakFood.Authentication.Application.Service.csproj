@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.5.5" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.5" />
+    <PackageReference Include="StackExchange.Redis" Version="2.9.32" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MakFood.Authentication.Application.Command\MakFood.Authentication.Application.Command.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Application.Contracts\MakFood.Authentication.Application.Contracts.csproj" />
     <ProjectReference Include="..\MakFood.Authentication.Domain\MakFood.Authentication.Domain.Model.csproj" />

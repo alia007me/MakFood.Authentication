@@ -8,7 +8,8 @@ namespace MakFood.Authentication.Infraustraucture.Contract
 {
     public interface IUnitOfWork
     {
-        public Task<SavingResult> Commit(CancellationToken ct);
+        public Task<SavingResult> Commit(CancellationToken ct= default);
+        public SavingResult Commit();
         public class SavingResult
         {
             public int ChangesCount { get; set; }

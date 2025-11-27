@@ -1,5 +1,4 @@
-﻿using MakFood.Authentication.Application.Command.CommandHandler.DeclaringPermission;
-using MakFood.Authentication.Application.Command.Exception;
+﻿using MakFood.Authentication.Application.Command.Exception;
 using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Domain.Model.Entities;
 using MakFood.Authentication.Domain.Model.Enums;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission
+namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringPermission
 {
     public class DeclaringPermissionCommandHandler : IRequestHandler<DeclaringPermissionCommand, DeclaringPermissionCommandResponse>
     {

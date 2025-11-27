@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission
+namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringPermission
 {
     public class DeclaringPermissionCommand : CommandBase, IRequest<DeclaringPermissionCommandResponse>
     {

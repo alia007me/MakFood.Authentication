@@ -1,6 +1,6 @@
 ﻿using MakFood.Authentication.Infraustraucture.Substructure.Base.ApplicationException;
 
-namespace MakFood.Authentication.Application.Command.CommandHandler.DeclaringGroup
+namespace MakFood.Authentication.Application.Command.Exception
 {
 
 

@@ -1,6 +1,4 @@
-﻿using MakFood.Authentication.Application.Command.CommandHandler.AssignGroupPermissonToUser;
-using MakFood.Authentication.Host.Activator.Constants;
-using MakFood.FBI.ActionFilter;
+﻿using MakFood.Authentication.Application.Command.CommandHandler.AssignGroupToUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +14,7 @@ namespace MakFood.Authentication.Host.Controller
         {
             _mediator = mediator;
         }
-        [HasPermission(Permissions.AssignGroupToUser)]
+
         [HttpPost("{userId}/groups/{groupId}/assign")]
         public async Task<IActionResult> AddGroupToUser([FromBody] AssignGroupToUserCommand command, [FromRoute] Guid userId , [FromRoute] uint groupId, CancellationToken ct)
         {

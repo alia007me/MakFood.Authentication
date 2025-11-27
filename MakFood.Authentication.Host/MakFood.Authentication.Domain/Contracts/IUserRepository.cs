@@ -9,6 +9,7 @@ namespace MakFood.Authentication.Domain.Model.Contracts
 {
     public interface IUserRepository
     {
+        Task AddAsync(User user);
         Task<User> GetUserByIdAsync(Guid Id, CancellationToken ct);
         Task<UserGroup> GetUserGroupAsync(Guid userId, uint groupId, CancellationToken ct);
         Task<bool> IsUserGroupExist(Guid userId, uint groupId, CancellationToken ct);

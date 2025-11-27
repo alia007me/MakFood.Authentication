@@ -1,4 +1,5 @@
-﻿using MakFood.Authentication.Domain.Model.Contracts;
+﻿using MakFood.Authentication.Application.Command.Exception;
+using MakFood.Authentication.Domain.Model.Contracts;
 using MakFood.Authentication.Infraustraucture.Contract;
 using MakFood.Authentication.Infraustraucture.Substructure.Base.ApplicationException;
 using MediatR;

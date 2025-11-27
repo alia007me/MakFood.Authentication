@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupPermissonToUser
+namespace MakFood.Authentication.Application.Command.CommandHandler.AssignGroupToUser
 {
     public class AssignGroupToUserCommand : CommandBase, IRequest<AssignGroupToUserCommandResponse>
     {

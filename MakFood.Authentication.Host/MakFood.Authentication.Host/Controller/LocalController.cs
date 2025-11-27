@@ -1,4 +1,4 @@
-﻿using MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission;
+﻿using MakFood.Authentication.Application.Command.CommandHandler.DeclaringPermission;
 using MakFood.Authentication.Host.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

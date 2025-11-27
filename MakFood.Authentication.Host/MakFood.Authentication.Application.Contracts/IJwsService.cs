@@ -9,8 +9,7 @@ namespace MakFood.Authentication.Application.Contracts
 {
     public interface IJwsService
     {
-        Task<string> CreateJwsToken(User user , CancellationToken cancellationToken);
+        Task<string> CreateJwsToken(User user, CancellationToken cancellationToken);
         Task DeleteJwsToken(User user, string jwsToken);
-
     }
 }

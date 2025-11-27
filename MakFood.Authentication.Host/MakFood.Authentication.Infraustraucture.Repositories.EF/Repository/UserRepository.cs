@@ -13,12 +13,19 @@ namespace MakFood.Authentication.Infraustraucture.Repositories.EF.Repository
     public class UserRepository : IUserRepository
     {
         private readonly DbSet<User> _users;
+        private readonly AuthDbContext _context;
 
 
-        public UserRepository(AuthDbContext users)
+
+        public UserRepository(AuthDbContext users, AuthDbContext authDbContext)
         {
             _users = users.Set<User>();
+            _context = authDbContext;
+        }
 
+        public async Task AddAsync(User user)
+        {
+            await _context.Users.AddAsync(user);
         }
 
         public async Task<User> GetUserByIdAsync(Guid Id, CancellationToken ct)

@@ -1,5 +1,4 @@
-﻿using MakFood.Authentication.Application.Command.Command.Handler.DeclaringPermission;
-using MakFood.Authentication.Domain.Model.Entities;
+﻿using MakFood.Authentication.Domain.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
